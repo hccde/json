@@ -1,0 +1,6 @@
+# Hashes of file build rules.
+6ad070f92390b8c0c41950286e91de07 test/CMakeFiles/clean_cotire
+4eee9751a8141456fad06bcff13079e6 test/CMakeFiles/json_unit_pch
+bc3a30227af8bebd8a251de0380699d1 test/cotire/json_unit_CXX_prefix.cxx
+7bfafcb5041efa44d2f994271d73c50d test/cotire/json_unit_CXX_prefix.hxx
+7b762f2edc9e0bb5835d8ade99e2c3a2 test/cotire/json_unit_CXX_prefix.hxx.pch

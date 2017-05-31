@@ -67,6 +67,8 @@ SOFTWARE.
     #endif
 #endif
 
+
+//忽略浮点数警告 
 // disable float-equal warnings on GCC/clang
 #if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
     #pragma GCC diagnostic push
@@ -79,6 +81,7 @@ SOFTWARE.
     #pragma GCC diagnostic ignored "-Wdocumentation"
 #endif
 
+//废弃代码警告
 // allow for portable deprecation warnings
 #if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
     #define JSON_DEPRECATED __attribute__((deprecated))
@@ -88,6 +91,7 @@ SOFTWARE.
     #define JSON_DEPRECATED
 #endif
 
+//debug 开关
 // allow to disable exceptions
 #if (defined(__cpp_exceptions) || defined(__EXCEPTIONS) || defined(_CPPUNWIND)) && not defined(JSON_NOEXCEPTION)
     #define JSON_THROW(exception) throw exception
@@ -99,6 +103,8 @@ SOFTWARE.
     #define JSON_CATCH(exception) if(false)
 #endif
 
+//手动分支预测的特性，因为预取指令 在面临跳转的时候 预取的指令失效 造成
+//程序效率下降 因此 引入手动分支预测 帮助改进程序性能
 // manual branch prediction
 #if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
     #define JSON_LIKELY(x)      __builtin_expect(!!(x), 1)
@@ -113,6 +119,7 @@ SOFTWARE.
 @see https://github.com/nlohmann
 @since version 1.0.0
 */
+// nlohman的命名空间
 namespace nlohmann
 {
 
@@ -142,6 +149,7 @@ Extension of std::exception objects with a member @a id for exception ids.
 
 @since version 3.0.0
 */
+//  继承自标准库的异常处理 作为接口
 class exception : public std::exception
 {
   public:
