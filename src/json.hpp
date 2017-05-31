@@ -212,6 +212,8 @@ json.exception.parse_error.113 | parse error at 2: expected a CBOR string; last 
 
 @since version 3.0.0
 */
+
+//单例 不能被实例化
 class parse_error : public exception
 {
   public:
@@ -414,6 +416,8 @@ value with the default value for a given type
 
 @since version 1.0.0
 */
+
+// 传统的enum是全局变量 并且 enum中的值是编译器相关的 c++11增加了enum class 并且可以指定类型 加强了enum
 enum class value_t : uint8_t
 {
     null,            ///< null value
@@ -436,6 +440,7 @@ Returns an ordering that is similar to Python:
 
 @since version 1.0.0
 */
+//对于 value_t 重载了<运算符
 inline bool operator<(const value_t lhs, const value_t rhs) noexcept
 {
     static constexpr std::array<uint8_t, 8> order = {{
