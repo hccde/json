@@ -440,9 +440,10 @@ Returns an ordering that is similar to Python:
 
 @since version 1.0.0
 */
-//对于 value_t 重载了<运算符
+//对于 value_t 重载了<运算符 对几种类型进行区分和比较
 inline bool operator<(const value_t lhs, const value_t rhs) noexcept
 {
+    //数组容器 初始化不同于普通数组，两个{}
     static constexpr std::array<uint8_t, 8> order = {{
             0, // null
             3, // object
@@ -469,7 +470,7 @@ inline bool operator<(const value_t lhs, const value_t rhs) noexcept
 /////////////
 // helpers //
 /////////////
-
+//这里使用了c++一个非常重要的原则 SFINAE type_traits
 // alias templates to reduce boilerplate
 template<bool B, typename T = void>
 using enable_if_t = typename std::enable_if<B, T>::type;
@@ -497,6 +498,7 @@ struct conjunction<B1, Bn...> : std::conditional<bool(B1::value), conjunction<Bn
 
 template<class B> struct negation : std::integral_constant < bool, !B::value > {};
 
+//貌似是一个模板递归 丢你
 // dispatch utility (taken from ranges-v3)
 template<unsigned N> struct priority_tag : priority_tag < N - 1 > {};
 template<> struct priority_tag<0> {};
